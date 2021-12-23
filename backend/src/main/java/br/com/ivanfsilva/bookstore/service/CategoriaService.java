@@ -2,6 +2,8 @@ package br.com.ivanfsilva.bookstore.service;
 
 import br.com.ivanfsilva.bookstore.domain.Categoria;
 import br.com.ivanfsilva.bookstore.repositories.CategoriaRepository;
+import br.com.ivanfsilva.bookstore.service.exceptions.ObjectNotFoundExceptions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class CategoriaService {
     public Categoria findById(Integer id) {
         Optional<Categoria> obj = categoriaRepository.findById(id);
 
-        return obj.orElse(null);
+        return obj.orElseThrow( () -> new ObjectNotFoundExceptions(
+                "Objeto não encontrado! id: " + id + ", Tipo: " + Categoria.class.getName()));
     }
 }
