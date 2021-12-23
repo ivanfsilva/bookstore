@@ -1,6 +1,7 @@
 package br.com.ivanfsilva.bookstore.service;
 
 import br.com.ivanfsilva.bookstore.domain.Categoria;
+import br.com.ivanfsilva.bookstore.dtos.CategoriaDTO;
 import br.com.ivanfsilva.bookstore.repositories.CategoriaRepository;
 import br.com.ivanfsilva.bookstore.service.exceptions.ObjectNotFoundExceptions;
 
@@ -29,6 +30,14 @@ public class CategoriaService {
 
     public Categoria create(Categoria obj) {
         obj.setId(null);
+
+        return categoriaRepository.save(obj);
+    }
+
+    public Categoria update(Integer id, CategoriaDTO objDTO) {
+        Categoria obj = findById(id);
+        obj.setNome(objDTO.getNome());
+        obj.setDescricao(objDTO.getDescricao());
 
         return categoriaRepository.save(obj);
     }
