@@ -20,38 +20,38 @@ public class CategoriaResource {
     CategoriaService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Categoria> findById(@PathVariable Integer id) {
-        Categoria obj = service.findById(id);
+    public ResponseEntity<Categoria> findById( @PathVariable Integer id ) {
+        Categoria obj = service.findById( id );
 
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok().body( obj );
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoriaDTO>> findAll() {
+    public ResponseEntity< List<CategoriaDTO> > findAll() {
         List<Categoria> list = service.findAll();
-        List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+        List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO( obj )).collect( Collectors.toList() );
 
-        return ResponseEntity.ok().body(listDTO);
+        return ResponseEntity.ok().body( listDTO );
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> create(@RequestBody Categoria obj) {
-        obj = service.create(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+    public ResponseEntity<Categoria> create( @RequestBody Categoria obj ) {
+        obj = service.create( obj );
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path( "/{id}" ).buildAndExpand( obj.getId() ).toUri();
 
-        return ResponseEntity.created(uri).body(obj);
+        return ResponseEntity.created( uri ).body( obj );
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO objDTO) {
-        Categoria newObj = service.update(id, objDTO);
+    public ResponseEntity<CategoriaDTO> update( @PathVariable Integer id, @RequestBody CategoriaDTO objDTO ) {
+        Categoria newObj = service.update( id, objDTO );
 
-        return ResponseEntity.ok().body(new CategoriaDTO(newObj));
+        return ResponseEntity.ok().body( new CategoriaDTO(newObj) );
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        service.delete(id);
+    public ResponseEntity<Void> delete( @PathVariable Integer id ) {
+        service.delete( id );
         return ResponseEntity.noContent().build();
     }
 }
