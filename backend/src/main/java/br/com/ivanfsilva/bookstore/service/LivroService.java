@@ -1,5 +1,6 @@
 package br.com.ivanfsilva.bookstore.service;
 
+import br.com.ivanfsilva.bookstore.domain.Categoria;
 import br.com.ivanfsilva.bookstore.domain.Livro;
 import br.com.ivanfsilva.bookstore.repositories.LivroRepository;
 import br.com.ivanfsilva.bookstore.service.exceptions.ObjectNotFoundExceptions;
@@ -42,5 +43,13 @@ public class LivroService {
         newObj.setTitulo(obj.getTitulo());
         newObj.setNomeAutor(obj.getNomeAutor());
         newObj.setTexto(obj.getTexto());
+    }
+
+    public Livro create(Integer idCat, Livro obj) {
+        obj.setId(null);
+        Categoria cat = categoriaService.findById(idCat);
+        obj.setCategoria(cat);
+
+        return repository.save(obj);
     }
 }
