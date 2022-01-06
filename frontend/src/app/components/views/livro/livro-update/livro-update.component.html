@@ -1,5 +1,5 @@
 <form>
-  <h1>CRIANDO NOVO LIVRO</h1>
+  <h1>ATUALIZANDO LIVRO</h1>
 
   <mat-form-field class="form">
     <mat-label>Título</mat-label>
@@ -11,7 +11,7 @@
   <mat-form-field class="form">
     <mat-label>Autor</mat-label>
     <input matInput [(ngModel)]="livro.nomeAutor" [formControl]="autor" required autocomplete="off" type="text"
-           name="autor" placeholder="ex. Tanenbaum" maxlength="100"/>
+           name="nomeAutor" placeholder="ex. Tanenbaum" maxlength="100"/>
     <mat-error *ngIf="autor.invalid">{{ getMessageNomeAutor() }}</mat-error>
   </mat-form-field>
 
@@ -23,7 +23,7 @@
   </mat-form-field>
 
   <div class="buttons">
-    <button (click)="create()" [disabled]="getMessageTitulo() || getMessageNomeAutor() || getMessageTexto()" class="mat-elevation-z8" mat-raised-button color="primary">CRIAR</button>
+    <button (click)="update()" [disabled]="getMessageTitulo() || getMessageNomeAutor() || getMessageTexto()" class="mat-elevation-z8" mat-raised-button color="primary">ATUALIZAR</button>
     <button (click)="cancel()" class="mat-elevation-z8" mat-raised-button color="warn">CANCELAR</button>
   </div>
 </form>
