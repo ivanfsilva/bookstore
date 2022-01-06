@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Livro} from "../livro.model";
-import {LivroService} from "../livro.service";
-import {ActivatedRoute} from "@angular/router";
-import {Categoria} from "../../categoria/categoria.model";
-import {CategoriaService} from "../../categoria/categoria.service";
+import { Livro } from "../livro.model";
+import { LivroService } from "../livro.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Categoria } from "../../categoria/categoria.model";
+import { CategoriaService } from "../../categoria/categoria.service";
 
 @Component({
   selector: 'app-livro-read-all',
@@ -24,7 +24,8 @@ export class LivroReadAllComponent implements OnInit {
   constructor(
     private service: LivroService,
     private serviceCat: CategoriaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,4 +48,7 @@ export class LivroReadAllComponent implements OnInit {
     });
   }
 
+  navegarParaCriarLivro() {
+    this.router.navigate([`categorias/${this.idCat}/livros/create`]);
+  }
 }
