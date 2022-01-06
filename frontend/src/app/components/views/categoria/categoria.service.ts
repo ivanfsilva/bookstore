@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Categoria } from "./categoria.model";
 import { environment } from "../../../../environments/environment";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,11 @@ export class CategoriaService {
     private _snack: MatSnackBar
   ) { }
 
+  findById( id: String ): Observable<Categoria> {
+    const url = `${this.baseUrl}/categorias/${id}`;
+    return this.http.get<Categoria>(url);
+  }
+
   findAll():Observable<Categoria[]> {
     const url = `${this.baseUrl}/categorias`;
     return this.http.get<Categoria[]>(url);
@@ -25,6 +30,11 @@ export class CategoriaService {
   create( categoria: Categoria ): Observable<Categoria> {
     const url = `${this.baseUrl}/categorias`;
     return this.http.post<Categoria>(url, categoria);
+  }
+
+  delete( id: String ): Observable<void> {
+    const url = `${this.baseUrl}/categorias/${id}`;
+    return this.http.delete<void>(url);
   }
 
   mensagem( str: String): void {
