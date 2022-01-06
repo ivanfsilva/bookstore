@@ -27,14 +27,19 @@ export class LivroService {
     return this.http.get<Livro[]>(url);
   }
 
+  create( livro: Livro, idCat: String ): Observable<Livro[]> {
+    const url = `${this.baseUrl}/livros?categoria=${idCat}`;
+    return this.http.post<Livro[]>(url, livro);
+  }
+
   update(livro: Livro): Observable<Livro> {
     const url = `${this.baseUrl}/livros/${livro.id}`;
     return this.http.put<Livro>(url, livro);
   }
 
-  create( livro: Livro, idCat: String ): Observable<Livro[]> {
-    const url = `${this.baseUrl}/livros?categoria=${idCat}`;
-    return this.http.post<Livro[]>(url, livro);
+  delete( id: String ): Observable<void> {
+    const url = `${this.baseUrl}/livros/${id}`;
+    return this.http.delete<void>(url);
   }
 
   mensagem( str: String): void {
